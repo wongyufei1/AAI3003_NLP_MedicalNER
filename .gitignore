@@ -1,0 +1,6 @@
+.idea
+data
+venv
+cp
+__pycache__
+output
