@@ -1,0 +1,10 @@
+.idea
+data
+venv
+cp
+__pycache__
+output/bert-base-uncased
+output/biobert
+output/bioclinicalbert
+output/distilbert-base-uncased
+output/medbert
