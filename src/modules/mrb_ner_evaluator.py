@@ -2,13 +2,13 @@ import numpy as np
 
 from datasets import load_metric
 
+
 class MRBNEREvaluator:
     def __init__(self, metric, id2label):
         self.metric = load_metric(metric, trust_remote_code=True)
         self.id2label = id2label
 
     def compute_metrics(self, p):
-
         predictions, labels = p
         predictions = np.argmax(predictions, axis=2)
 

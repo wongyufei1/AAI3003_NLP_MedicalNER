@@ -2,6 +2,7 @@ import torch
 
 from torch.utils.data import Dataset
 
+
 class MRBNERDataset(Dataset):
     def __init__(self, data, tokenizer, id2label, label2id, max_len):
         self.tokenizer = tokenizer
@@ -20,7 +21,7 @@ class MRBNERDataset(Dataset):
 
                 text_tokens = tokenizer.tokenize(text)
                 sample_tokens.extend(text_tokens)
-                
+
                 if label == 0:
                     sample_labels.extend([label] * len(text_tokens))
                 else:
@@ -28,7 +29,7 @@ class MRBNERDataset(Dataset):
                     ext_label = id2label[label]
                     ext_label = label2id[f"I-{ext_label[2:]}"]
                     sample_labels.extend([ext_label] * (len(text_tokens) - 1))
-            
+
             self.tokens.append(sample_tokens)
             self.labels.append(sample_labels)
 
@@ -51,7 +52,7 @@ class MRBNERDataset(Dataset):
             "labels": torch.as_tensor(input_labels),
             "attention_mask": torch.as_tensor(att_mask)
         }
-    
+
     def pad_and_truncate(self, inputs, pad_id: int):
         if len(inputs) < self.max_len:
             padded_inputs = inputs + [pad_id] * (self.max_len - len(inputs))
