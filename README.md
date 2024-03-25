@@ -6,7 +6,7 @@ Navigate to src folder in terminal
 cd src
 ```
 
-Intall depedencies
+Intall dependencies
 ```
 pip3 install requirements.txt
 ```
