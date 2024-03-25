@@ -1,6 +1,6 @@
 # AAI3003_NLP_MedicalNER
  
-## How to run demo
+## How to Run Demo
 Navigate to src folder in terminal
 ```
 cd src
