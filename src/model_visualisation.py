@@ -35,7 +35,7 @@ def compile_model_statistics(dir):
                 else:
                     model_results[metric].append(value)
 
-        with open(os.path.join(dir, f"{m['name']}/{lr}/checkpoint-350/trainer_state.json"), "r+") as f:
+        with open(os.path.join(dir, f"{m['name']}/{lr}/checkpoint-400/trainer_state.json"), "r+") as f:
             epoch_metrics = json.load(f)["log_history"]
 
             # get each model's loss, accuracy, precision, recall

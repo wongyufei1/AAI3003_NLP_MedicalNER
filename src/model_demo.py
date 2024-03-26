@@ -43,7 +43,7 @@ def run():
         ents = []
 
         for prediction in out:
-            span = (prediction["start"], prediction["end"], prediction["entity_group"])
+            span = [prediction["start"], prediction["end"], prediction["entity_group"]]
             ent = doc.char_span(span[0], span[1], span[2])
 
             if ent is None:
