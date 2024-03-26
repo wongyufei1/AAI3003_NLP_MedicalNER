@@ -12,16 +12,21 @@ class MRBNERDataset(Dataset):
         self.labels = []
         self.max_len = max_len
 
+        # loop through and preprocess all samples
         for i in range(len(self.label_tokens)):
             sample_tokens = []
             sample_labels = []
+
+            # loop through all labelled tokens in sample
             for j in range(len(self.label_tokens[i])):
                 text = self.label_tokens[i][j]
                 label = self.ner_labels[i][j]
 
+                # split word/phrase tokens into sub-word tokens
                 text_tokens = tokenizer.tokenize(text)
                 sample_tokens.extend(text_tokens)
 
+                # change existing word/phrase label to BIO format and label each sub-word token
                 if label == 0:
                     sample_labels.extend([label] * len(text_tokens))
                 else:
@@ -43,6 +48,7 @@ class MRBNERDataset(Dataset):
 
         input_ids = self.tokenizer.convert_tokens_to_ids(input_tokens)
 
+        # pad and truncate all inputs to fit model input size (bert = 512)
         input_ids = self.pad_and_truncate(input_ids, self.tokenizer.pad_token_id)
         input_labels = self.pad_and_truncate(input_labels, 0)
         att_mask = self.pad_and_truncate(att_mask, 0)
@@ -58,4 +64,5 @@ class MRBNERDataset(Dataset):
             padded_inputs = inputs + [pad_id] * (self.max_len - len(inputs))
         else:
             padded_inputs = inputs[: self.max_len]
+
         return padded_inputs

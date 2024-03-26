@@ -17,8 +17,8 @@ logging.set_verbosity_error()
 
 
 def run():
+    # load input text file
     fpath = sys.argv[1]
-
     with open(fpath, "r+") as f:
         text = "".join(f.readlines())
 
@@ -28,20 +28,24 @@ def run():
     nlp = spacy.blank("en")
     docs = []
 
+    # inference input text with all 5 models
     for m in MODEL_PATHS:
         print(f"\n---------------------- Running Model for Inference (Model:{m['name']}) ----------------------")
 
         doc = nlp.make_doc(text)
 
+        # load model and tokenizer
         tokenizer = AutoTokenizer.from_pretrained(os.path.join(OUT_DIR, f"{m['name']}/save_model"))
         model = AutoModelForTokenClassification.from_pretrained(os.path.join(OUT_DIR, f"{m['name']}/save_model"))
 
+        # predict
         pipe = pipeline("ner", model=model, tokenizer=tokenizer, device=DEVICE, aggregation_strategy="max")
         out = pipe(text)
 
         spans = []
         ents = []
 
+        # rearrange data format for visualization
         for prediction in out:
             span = [prediction["start"], prediction["end"], prediction["entity_group"]]
             ent = doc.char_span(span[0], span[1], span[2])
@@ -54,6 +58,8 @@ def run():
 
         doc.ents = ents
         docs.append(doc)
+
+        # ascii visualization of predictions
         show_span_ascii_markup(text, spans)
 
         # clear gpu cache for OOM problem
@@ -61,6 +67,7 @@ def run():
         gc.collect()
         torch.cuda.empty_cache()
 
+    # html visualization of predictions
     displacy.serve(docs, style="ent", host="127.0.0.1", port=5000)
 
 

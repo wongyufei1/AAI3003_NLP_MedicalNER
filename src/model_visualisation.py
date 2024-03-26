@@ -24,7 +24,7 @@ def compile_model_statistics(dir):
             lr = lines[0].split(",")[1].strip("\n")
             model_labels.append(f"{m['name']}_{lr}")
 
-            # get each model's result on test set
+            # get each best model's result on test set
             for line in lines[1:]:
                 line = line.split(",")
                 metric = line[0]
