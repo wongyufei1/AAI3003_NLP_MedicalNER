@@ -10,6 +10,12 @@ cd src
 pip3 install requirements.txt
 ```
 
+3. Set up PYTHONPATH env variable
+```
+pwd # To get path
+set PYTHONPATH='\path\to\directory\src:${PYTHONPATH}'
+```
+
 ## How to Train Model and Visualise Model Results
 1. Navigate to modules folder in terminal
 ```
@@ -48,6 +54,33 @@ python3 model_demo.py demo_cases/case_{1/2/3/4/5}.txt
 
 You should now be able to view ASCII representation of prediction on the terminal as well as 
 access a graphical representation at http://127.0.0.1:5000.
+
+## How to Run API
+
+Set ENV variable in the terminal
+
+```
+pwd # To get path
+set PYTHONPATH='\path\to\directory\src:${PYTHONPATH}'
+```
+
+Navigate to api folder in terminal
+
+```
+cd api
+```
+
+Intall dependencies
+
+```
+pip3 install -r requirements.txt
+```
+
+Run flask backend
+
+```
+python3 main.py
+```
 
 ## How to Run Web UI
 1. Navigate to web-ui folder in terminal
