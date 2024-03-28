@@ -16,37 +16,9 @@ pip3 install requirements.txt
 cd modules
 ```
 
-2. Open mrb_ner_config.py and set your training configurations
+2. Open mrb_ner_config.py and set your batch size to suit your hardware resources
 ```
-DATA_PATH = "singh-aditya/MACCROBAT_biomedical_ner"
-OUT_DIR = "../output"
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 4
-EPOCHS = 10
-MODEL_PATHS = [
-    {
-        "name": "distilbert-base-uncased",
-        "path": "distilbert/distilbert-base-uncased",
-    },
-    {
-        "name": "bert-base-uncased",
-        "path": "google-bert/bert-base-uncased",
-    },
-    {
-        "name": "biobert",
-        "path": "dmis-lab/biobert-v1.1",
-    },
-    {
-        "name": "bioclinicalbert",
-        "path": "emilyalsentzer/Bio_ClinicalBERT",
-    },
-    {
-        "name": "medbert",
-        "path": "Charangan/MedBERT",
-    }
-]
-LRATES = [5e-5, 4e-5, 3e-5, 2e-5]
-WDECAY = 0.01
 ```
 
 3. Navigate back to src folder in terminal
@@ -57,6 +29,11 @@ cd ..
 4. Run model_training.py in terminal and wait for the output folder to be generated
 ```
 python3 model_training.py
+```
+
+5. Run model_visualisation.py in terminal and wait for the csv and graphs to be generated in the output folder
+```
+python3 model_visualisation.py
 ```
 
 ## How to Run Model Demo
