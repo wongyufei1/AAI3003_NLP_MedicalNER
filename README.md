@@ -60,8 +60,11 @@ python3 model_training.py
 ```
 
 ## How to Run Model Demo
-1. Ensure that models have been generated from training.
-Run model_demo.py in terminal
+```
+Ensure that models in the output folder have been generated from training
+```
+
+1. Run model_demo.py in terminal
 ```
 python3 model_demo.py demo_cases/case_{1/2/3/4/5}.txt
 ```
