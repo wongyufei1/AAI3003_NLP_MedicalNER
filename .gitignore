@@ -8,3 +8,5 @@ output/biobert
 output/bioclinicalbert
 output/distilbert-base-uncased
 output/medbert
+api/.env
+api/__pycache__
