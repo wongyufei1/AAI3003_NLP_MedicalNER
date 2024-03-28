@@ -8,6 +8,7 @@ pandas==1.5.3
 seaborn==0.13.2
 spacy==3.7.4
 torch==2.2.1+cu121
+torch==2.2.1
 transformers==4.39.0
 spacy
 Flask==2.1.0
